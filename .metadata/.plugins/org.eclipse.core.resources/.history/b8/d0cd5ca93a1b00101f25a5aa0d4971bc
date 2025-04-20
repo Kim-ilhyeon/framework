@@ -1,0 +1,30 @@
+package com.kh.test.aspect;
+
+import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.Pointcut;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
+
+// Aspect 선언
+
+@Aspect		// Aspect 선언
+@Component	// Bean 등록
+public class LoggingAspect {
+
+	// 롬복 없이 로그 객체 사용. Logger
+	private final Logger log = LoggerFactory.getLogger(LoggingAspect.class);
+	
+	// * 기본 패키지 경로 내의 모든 메소드를 대상으로 
+	@Pointcut("execution(* com.kh.test..controller.*.*(..))")
+	private void controllerPointCut() {}
+	
+	// * 호출 전 메소드 명과, 파라미터 정보를 로그로 출력
+	@Before("controllerPointCut()")
+	public void beforeAdvice(JoinPoint joinPoint) {
+		
+	}
+	
+}

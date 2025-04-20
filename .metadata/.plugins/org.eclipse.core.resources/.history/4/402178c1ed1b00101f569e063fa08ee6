@@ -1,0 +1,15 @@
+package com.kh.thymeleaf.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+
+@Controller
+public class PracticeController {
+
+	// [GET방식] "/go" 요청을 매핑
+	@GetMapping("go")
+	public String go() {
+		
+	}
+	
+}

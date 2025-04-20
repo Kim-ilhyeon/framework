@@ -1,0 +1,16 @@
+package com.kh.test.aspect;
+
+import org.aspectj.lang.annotation.Aspect;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
+
+// Aspect 선언
+
+@Aspect		// Aspect 선언
+@Component	// Bean 등록
+public class LoggingAspect {
+
+	// 롬복 없이 로그 객체 사용. Logger
+	private final Logger log = LoggerFactory.getLogger(LoggingAspect.class);
+	
+}

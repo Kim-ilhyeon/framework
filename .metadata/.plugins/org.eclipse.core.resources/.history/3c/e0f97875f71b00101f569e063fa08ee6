@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result Page</title>
+</head>
+
+<body>
+    <h1>Page2</h1>
+    <span th:text="'이름 : ' + ${p.name}"></span> <br>
+    <span th:text="'나이 : ' + ${p.age}"></span> <br>
+    <span th:text="'생년월일 : ' + ${p.birth}"></span> <br>
+
+    <table>
+        <tr th:each="p : ${p.hobby}">
+            <td th:text="'취미 : ' + ${p}"></td>
+        </tr>
+    </table>
+</body>
+
+</html>

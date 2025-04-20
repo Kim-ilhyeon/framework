@@ -1,0 +1,10 @@
+package com.kh.test.aspect;
+
+import org.aspectj.lang.annotation.Aspect;
+
+// Aspect 선언
+
+@Aspect
+public class LoggingAspect {
+
+}

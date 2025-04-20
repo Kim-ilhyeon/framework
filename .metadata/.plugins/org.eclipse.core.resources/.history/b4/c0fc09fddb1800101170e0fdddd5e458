@@ -1,0 +1,37 @@
+package com.kh.spring.board.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.kh.spring.board.model.vo.Reply;
+import com.kh.spring.board.service.BoardService;
+
+@Controller
+@RequestMapping("/comment")
+public class CommentController {
+	
+	private final BoardService bService;
+	
+	public CommentController(BoardService bService) {
+		
+		this.bService = bService;
+		
+	}
+
+	// 댓글 등록
+	// => 비동기 통신 : 페이지가 재로드되는 것이 아니라 데이터만 전달받아서 일부분만 로드
+	//    응답할 때 페이지를 응답하는 것이 아니라, 데이터를 응답하는 것!
+	@PostMapping("/regist")
+	@ResponseBody
+	public String commentRegist(int boardId, int memberId, String replyConetent) {
+		
+		int result = bService.insertReply(boardId, memberId, replyConetent);
+		
+		Reply reply = bService.selectReply(boardId);
+		
+		return null;
+		
+	}
+	
+}

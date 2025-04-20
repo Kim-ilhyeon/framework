@@ -1,0 +1,121 @@
+package com.kh.spring.board.service;
+
+import java.util.ArrayList;
+
+import org.apache.ibatis.session.RowBounds;
+import org.springframework.stereotype.Service;
+
+import com.kh.spring.board.model.dao.BoardDao;
+import com.kh.spring.board.model.vo.Board;
+import com.kh.spring.board.model.vo.Reply;
+import com.kh.spring.common.PageInfo;
+import com.kh.spring.notice.model.dto.SearchDto;
+
+@Service
+public class BoardServiceImpl implements BoardService {
+	
+	// 생성자 주입 방식
+	private final BoardDao bDao;
+	
+	public BoardServiceImpl(BoardDao bDao) {
+		this.bDao = bDao;
+	}
+	// -----------
+
+	@Override
+	public ArrayList<Board> selectBoardList(SearchDto searchDto, PageInfo pi) {
+		
+		// RowBounds 객체 => MyBatis 프레임 워크에서 제공하는 객체
+		int offset = (pi.getCurrPage() -1) * pi.getBoardLimit();
+		RowBounds rb = new RowBounds(offset,pi.getBoardLimit());
+		
+		ArrayList list = bDao.selectBoardList(searchDto, rb);
+		
+		return list;
+	}
+
+	/**
+	 * 게시글 개수 조회
+	 */
+	@Override
+	public int selectBoardCount(SearchDto searchDto) {
+		int result = bDao.selectBoardCount(searchDto);
+		System.out.println("서비스에서의 searchDto : " + searchDto);
+		return result;
+	}
+
+	@Override
+	public Board selectBoardDetail(int boardNo) {
+
+		Board board = bDao.selectBoard(boardNo);
+		
+		return board;
+	}
+
+	@Override
+	public int insertBoard(Board board) {
+
+		int result = bDao.insertBoard(board);
+
+		return result;
+	}
+
+	@Override
+	public int updateBoard(Board board) {
+		System.out.println("서비스 로 업데이트 들어오긴했음");
+		int result = bDao.updateBoard(board);
+		
+		return result;
+	}
+
+	@Override
+	public int deleteBoard(int boardNo) {
+
+		int result = bDao.deleteBoard(boardNo);
+		
+		return result;
+	}
+
+	@Override
+	public int insertReply(Reply reply) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public ArrayList<Reply> selectReplyList(int boardNo) {
+		
+		ArrayList<Reply> replyList = bDao.selectReplyList(boardNo);
+		
+		return replyList;
+	}
+
+	@Override
+	public int increaseCount(int boardNo) {
+		
+		 int result = bDao.increaseCount(boardNo);
+		
+		 return result;
+	}
+
+	@Override
+	public int insertReply(int boardId, int memberId, String replyConetent) {
+
+		int result = bDao.insertReply(boardId, memberId, replyConetent);
+		
+		return result;
+	}
+
+	@Override
+	public Reply selectReply(int boardId) {
+
+		Reply reply = bDao.selectReplyList(boardId);
+		
+		return reply;
+		
+	}
+	
+	
+	
+	
+}

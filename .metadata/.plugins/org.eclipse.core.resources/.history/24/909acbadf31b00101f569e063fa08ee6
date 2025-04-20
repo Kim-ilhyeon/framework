@@ -1,0 +1,59 @@
+package com.kh.thymeleaf.controller;
+
+import java.util.Arrays;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+@Controller
+public class PracticeController {
+
+	// [GET방식] "/go" 요청을 매핑
+	@GetMapping("go")
+	public String PracticePage() {
+		
+		
+		/*
+		 * *Thymeleaf 사용 시 기본 설정 값
+		 * 	=> classpath : src/main/resources/
+		 * 	- prefix : classpath:templates/
+		 * 	- suffix : .html
+		 */
+		return "practice/page1";
+	}
+	
+	/*
+	 * [POST] / add
+	 * 	{name: 이름, age: 나이, birth: 생년월일, hobby: 취미, ...}
+	 */
+	@PostMapping("add")
+	public String resultPage(
+							// HttpServletRequest request, 
+							String name, @RequestParam(defaultValue="20") int age, @RequestParam("birth") String birth, String[] hobby,
+							Model model) {
+		/*
+		String name = request.getParameter("name");
+		String age = request.getParameter("age");
+		String birth = request.getParameter("birth");
+		
+		String[] hobbies = request.getParameterValues("hobby");
+		*/
+		
+		System.out.println("name : " + name);
+		System.out.println("age : " + age);
+		System.out.println("birth : " + birth);
+		System.out.println("hobbies : " + Arrays.toString(hobbies));
+		
+		model.addAttribute(name);
+		model.addAttribute(age);
+		model.addAttribute(birth);
+		model.addAttribute(hobbies);
+		
+		return "practice/resultPage";
+		
+	}
+	
+}

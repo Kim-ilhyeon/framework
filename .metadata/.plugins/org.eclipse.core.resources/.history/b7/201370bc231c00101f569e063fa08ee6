@@ -1,0 +1,4 @@
+spring.application.name=todoList
+
+# port setting
+server.port=8383

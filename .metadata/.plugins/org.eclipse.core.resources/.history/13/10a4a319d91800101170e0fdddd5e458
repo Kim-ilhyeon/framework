@@ -1,0 +1,31 @@
+package com.kh.spring.board.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.kh.spring.board.service.BoardService;
+
+@Controller
+@RequestMapping("/comment")
+public class CommentController {
+	
+	private final BoardService bService;
+	
+	public CommentController(BoardService bService) {
+		
+		this.bService = bService;
+		
+	}
+
+	// 댓글 등록
+	@PostMapping("/regist")
+	public String commentRegist(int boardId, int memberId, String commentConetent) {
+		
+		int result = bService.insertComment();
+		
+		
+		
+	}
+	
+}

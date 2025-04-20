@@ -1,0 +1,15 @@
+package com.kh.test.controller;
+
+public class TestController {
+
+	@GetMapping("test1")
+	public String test1() {
+		return "test1이 호출됨";
+	}
+	
+	@Getmapping("test2")
+	public String test2(String name) {
+		return name + "님 반갑습니다 ^^";
+	}
+	
+}

@@ -1,0 +1,5 @@
+package com.kh.thymeleaf.model.dto;
+
+public class PersonDTO {
+
+}

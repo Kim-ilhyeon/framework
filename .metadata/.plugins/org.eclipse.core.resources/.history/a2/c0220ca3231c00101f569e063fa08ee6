@@ -1,0 +1,6 @@
+package com.kh.todoList.controller;
+
+@Controller
+public class SignUpPageController {
+
+}
